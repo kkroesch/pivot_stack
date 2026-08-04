@@ -45,6 +45,9 @@ RUN mkdir -p /root/.config/fish && \
     echo 'starship init fish | source' > /root/.config/fish/config.fish && \
     echo 'fish_vi_key_bindings' >> /root/.config/fish/config.fish
 
+RUN mkdir -p /etc/fish/conf.d
+COPY motd.fish /etc/fish/conf.d/99-motd.fish
+
 WORKDIR /workspace
 
 # Fish als Standard-Shell

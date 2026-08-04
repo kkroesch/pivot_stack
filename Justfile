@@ -1,5 +1,5 @@
 # Variablen
-registry := "ghcr.io/kkroesch/pivot_stack"
+registry := "ghcr.io/kkroesch/pivot-stack"
 version := `git rev-parse --short HEAD || date +%Y%m%d`
 
 # Standard-Target
