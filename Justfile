@@ -19,6 +19,14 @@ push: build
 run:
     podman run -it --rm -v {{invocation_directory()}}:/workspace:Z {{registry}}:latest
 
+# Startet den Container persistent zum neu verbinden
+stay:
+    podman run -dt --name pivot_stack -v {{invocation_directory()}}:/workspace:Z {{registry}}:latest
+
+# Verbindet auf den laufenden Container
+connect:
+    podman exec -it pivot_stack fish
+
 # Testet, ob alle Kern-Tools im Container verfügbar und ausführbar sind
 test:
     #!/usr/bin/env bash
