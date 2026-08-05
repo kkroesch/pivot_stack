@@ -16,9 +16,10 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # AstroNvim Basis-Template klonen
-# (Plugins werden beim ersten Start von nvim automatisch initialisiert)
 RUN git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim && \
     rm -rf ~/.config/nvim/.git
+RUN nvim --headless "+Lazy! sync" +qa
+
 
 # Just installieren (via offiziellem Shell-Skript)
 RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
