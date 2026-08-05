@@ -1,0 +1,18 @@
+# Navigation (setzt eza voraus)
+alias ls="eza"
+alias ll="eza -l --icons"
+alias la="eza -la --icons"
+alias lt="eza --tree"
+
+# Editoren & Data Tools
+alias v="nvim"
+alias vi="nvim"
+alias vd="visidata"
+
+# Python / UV Shortcuts
+alias py="python"
+
+# Bequemlichkeit
+alias c="clear"
+alias ..="cd .."
+alias ...="cd ../.."

@@ -2,7 +2,7 @@ FROM registry.fedoraproject.org/fedora:44
 
 # Abhängigkeiten für AstroNvim (gcc, git, ripgrep, fd-find) und Basis-Tools
 RUN dnf update -y && \
-    dnf install -y curl git neovim fish gcc gcc-c++ python3 ripgrep fd-find tar visidata && \
+    dnf install -y curl git neovim fish gcc gcc-c++ python3 ripgrep fd-find tar eza visidata && \
     dnf clean all
 
 # uv installieren
@@ -44,9 +44,11 @@ RUN uv tool install dvc && \
 COPY starship.toml /root/.config/starship.toml
 RUN mkdir -p /root/.config/fish && \
     echo 'starship init fish | source' > /root/.config/fish/config.fish && \
-    echo 'fish_vi_key_bindings' >> /root/.config/fish/config.fish
+    echo 'fish_vi_key_bindings' >> /root/.config/fish/config.fish && \
+    echo 'source /etc/.alias' >> /etc/fish/config.fish
 
 RUN mkdir -p /etc/fish/conf.d
+COPY .alias /etc/.alias
 COPY motd.fish /etc/fish/conf.d/99-motd.fish
 
 WORKDIR /workspace
