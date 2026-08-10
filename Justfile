@@ -54,3 +54,16 @@ test:
         
         echo "🎉 Alle Tools erfolgreich getestet!"
     '
+
+# Startet den Container persistent zum neu verbinden
+stay:
+    podman run -dt --name pivot_stack -p 2718:2718 -v $(pwd):/workspace:Z ghcr.io/kkroesch/pivot-stack:latest
+
+# Verbindet auf den laufenden Container
+connect:
+    podman exec -it pivot_stack fish
+
+# Startet Marimo im laufenden Container
+serve:
+    podman exec -it pivot_stack marimo edit --host 0.0.0.0 --port 2718
+
