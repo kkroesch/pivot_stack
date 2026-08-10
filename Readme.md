@@ -6,6 +6,9 @@
 
 A highly modular, reproducible, and containerized data science infrastructure. Built for performance and clean engineering, Pivot Stack provides a terminal-first environment isolated via Podman and automated via GitHub Actions.
 
+
+Just pull the OCI container with `podman pull ghcr.io/kkroesch/pivot-stack`. More hints how to start are found in the `Justfile`.
+
 ## 🧰 Core Stack & Tools
 
 This environment strictly separates system dependencies from project environments, relying on fast, modern CLI tools:
