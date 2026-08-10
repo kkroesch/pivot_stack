@@ -56,6 +56,6 @@ connect:
     podman exec -it pivot_stack fish
 
 # Startet Marimo im laufenden Container
-serve:
-    podman exec -it pivot_stack marimo edit --host 0.0.0.0 --port 2718
+serve notebook="":
+    podman exec -it pivot_stack marimo edit --host 0.0.0.0 --port 2718 {{ notebook }}
 
