@@ -59,3 +59,8 @@ connect:
 serve notebook="":
     podman exec -it pivot_stack marimo edit --host 0.0.0.0 --port 2718 {{ notebook }}
 
+toolbox:
+    -toolbox rm --force pivot_stack 2>/dev/null
+    toolbox create --image {{registry}}:toolbox --container pivot_stack
+    toolbox enter pivot_stack
+
