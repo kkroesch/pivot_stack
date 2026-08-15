@@ -31,19 +31,36 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Image
-        id: build-image
+      # --- 1. SERVER IMAGE (latest) ---
+      - name: Build Server Image
+        id: build-server
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.IMAGE_NAME }}
           tags: latest ${{ github.sha }}
           containerfiles: |
-            ./Containerfile
+            ./Containerfile.server
 
-      - name: Push Image to GHCR
-        id: push-to-ghcr
+      - name: Push Server Image
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: ${{ steps.build-image.outputs.image }}
-          tags: ${{ steps.build-image.outputs.tags }}
+          image: ${{ steps.build-server.outputs.image }}
+          tags: ${{ steps.build-server.outputs.tags }}
+          registry: ${{ env.REGISTRY }}
+
+      # --- 2. TOOLBOX IMAGE (toolbox) ---
+      - name: Build Toolbox Image
+        id: build-toolbox
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          tags: toolbox
+          containerfiles: |
+            ./Containerfile.toolbox
+
+      - name: Push Toolbox Image
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-toolbox.outputs.image }}
+          tags: ${{ steps.build-toolbox.outputs.tags }}
           registry: ${{ env.REGISTRY }}

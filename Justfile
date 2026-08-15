@@ -6,9 +6,9 @@ version := `git rev-parse --short HEAD || date +%Y%m%d`
 default: build
 
 # Baut das Image mit podman/buildah
-build:
+build type="server":
     @echo "Baue Image Version: {{version}}"
-    podman build -t {{registry}}:{{version}} -t {{registry}}:latest -f Containerfile .
+    podman build -t {{registry}}:{{version}} -t {{registry}}:latest -f Containerfile.{{type}} .
 
 # Schiebt das Image in deine selbst gehostete Registry
 push: build
