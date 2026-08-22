@@ -62,5 +62,5 @@ serve notebook="":
 toolbox:
     -toolbox rm --force pivot_stack 2>/dev/null
     toolbox create --image {{registry}}:toolbox --container pivot_stack
-    toolbox enter pivot_stack
+    toolbox run --container pivot_stack fish
 

@@ -1,7 +1,7 @@
 # Navigation (setzt eza voraus)
 alias ls="eza"
-alias ll="eza -l --icons"
-alias la="eza -la --icons"
+alias ll="eza --icons -l"
+alias la="eza --icons -la"
 alias lt="eza --tree"
 
 # Editoren & Data Tools
@@ -16,3 +16,4 @@ alias py="python"
 alias c="clear"
 alias ..="cd .."
 alias ...="cd ../.."
+alias ....="cd ../../.."
