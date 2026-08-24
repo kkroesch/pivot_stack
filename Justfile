@@ -57,7 +57,12 @@ connect:
 
 # Startet Marimo im laufenden Container
 serve notebook="":
-    podman exec -it pivot_stack marimo edit --host 0.0.0.0 --port 2718 {{ notebook }}
+    podman run -it --rm \
+        -p 2718:2718 \
+        -v "$PWD":/workspace:Z \
+        -w /workspace \
+        pivot-stack \
+        marimo edit --host 0.0.0.0 --port 2718 --headless --no-token {{ notebook }}
 
 toolbox:
     -toolbox rm --force pivot_stack 2>/dev/null
