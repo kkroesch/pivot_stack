@@ -31,6 +31,11 @@ Build and run the container locally using Podman:
 podman build -t pivot-stack:local .
 
 # Run the interactive environment
-podman run -it --rm -p 2718:2718 -v $PWD:/workspace pivot-stack:local
+podman run -it --rm \
+        -p 2718:2718 \
+        -v "$PWD":/workspace:Z \
+        -w /workspace \
+        pivot-stack \
+        marimo edit --host 0.0.0.0 --port 2718 --headless --no-token notebook.py
 ```
 
