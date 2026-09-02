@@ -35,7 +35,7 @@ podman run -it --rm \
         -p 2718:2718 \
         -v "$PWD":/workspace:Z \
         -w /workspace \
-        pivot-stack \
+        ghcr.io/kkroesch/pivot-stack:latest \
         marimo edit --host 0.0.0.0 --port 2718 --headless --no-token notebook.py
 ```
 
