@@ -20,7 +20,6 @@ RUN git clone --depth 1 https://github.com/AstroNvim/template ~/.config/nvim && 
     rm -rf ~/.config/nvim/.git
 RUN nvim --headless "+Lazy! sync" +qa
 
-
 # Just installieren (via offiziellem Shell-Skript)
 RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
 
@@ -29,10 +28,11 @@ RUN curl -L -o duckdb.zip https://github.com/duckdb/duckdb/releases/latest/downl
     unzip duckdb.zip -d /usr/local/bin && \
     rm duckdb.zip
 
-# DVC global als isoliertes Tool via uv installieren
+# Python modules, system-wide
 ENV PATH="/root/.local/bin:$PATH"
 RUN uv tool install dvc && \
-    uv tool install marimo
+    uv tool install marimo && \
+    uv pip install --system --no-cache polars pyarrow
 
 # Julia installieren (Offizielles Tarball)
 # RUN curl -L https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.4-linux-x86_64.tar.gz | tar -xz -C /usr/local --strip-components=1
